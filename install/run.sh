@@ -54,9 +54,7 @@ cp './base.html'   "$INDEX_PATH"
 chmod 755  "$INDEX_PATH" 
   
 # 检查目标文件是否存在
-if [ -f "$INDEX_PATH" ]; then
-  # 使用 sed 替换文件中的 "IPAPATH" 为 "xxxxxx"
-  sed -i '' 's/UUID/'${UUID}'/g'  "$INDEX_PATH"
+if [ -f "$INDEX_PATH" ]; then 
   sed -i '' 's/NAME/'${IPA_NAME}'/g'     "$INDEX_PATH" 
 else
   echo "错误: 文件 '$INDEX_PATH' 不存在!"
