@@ -187,6 +187,7 @@
         if(info.title) {
           btn.addEventListener('click', () => {
             const installUrl = 'itms-services://?action=download-manifest&url=https://192.168.10.170/plist/'+ info.title + '.plist';
+            
             console.log(installUrl);
             
             window.location.href = installUrl;
