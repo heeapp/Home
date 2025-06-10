@@ -150,7 +150,6 @@
           title: meta['title'] || '未知应用',
           bundleId: meta['bundle-identifier'] || '未知BundleID',
           version: meta['bundle-version'] || '未知版本',
-          plist_plist: meta['Github_URL'] || '',
         };
 
       } catch (err) {
@@ -181,13 +180,15 @@
             <h2>${info.title}</h2>
             <div class="info"><strong>Bundle ID：</strong>${info.bundleId}</div>
             <div class="info"><strong>版本号：</strong>${info.version}</div>
-            <button ${info.plist_plist ? '' : 'disabled'}>安装此应用</button>
+            <button ${info.title ? '' : 'disabled'}>安装此应用</button>
         `;
 
         const btn = card.querySelector('button');
-        if(info.plist_plist) {
+        if(info.title) {
           btn.addEventListener('click', () => {
-            const installUrl = 'itms-services://?action=download-manifest&url='+ info.plist_plist;
+            const installUrl = 'itms-services://?action=download-manifest&url=https://192.168.10.170/plist/'+ info.title + '.plist';
+            console.log(installUrl);
+            
             window.location.href = installUrl;
           });
         } else {

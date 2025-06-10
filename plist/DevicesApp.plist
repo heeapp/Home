@@ -7,37 +7,30 @@
         <dict>
         <key>assets</key>
         <array>
+
             <dict>
-            <key>kind</key>
-            <string>software-package</string>
-            <key>url</key>
-            <string>https://192.168.10.170/ipa/DevicesApp.ipa</string>
+                <key>kind</key>
+                <string>software-package</string>
+                
+                <key>url</key>
+                <string>https://192.168.10.170/ipa/DevicesApp.ipa</string>
             </dict>
-            <dict>
-            <key>kind</key>
-            <string>display-image</string>
-            <key>url</key>
-            <string></string>
-            </dict>
-            <dict>
-            <key>kind</key>
-            <string>full-size-image</string>
-            <key>url</key>
-            <string></string>
-            </dict>
+          
+            
         </array>
         <key>metadata</key>
         <dict>
             <key>bundle-identifier</key>
             <string>com.hwq.DevicesApp</string>
+
             <key>bundle-version</key>
             <string>1.0.0</string>
+
             <key>kind</key>
             <string>software</string>
+
             <key>title</key>
             <string>DevicesApp</string>
-            <key>Github_URL</key>
-            <string>https://192.168.10.170/plist/DevicesApp.plist </string>
         </dict>
         </dict>
     </array>
