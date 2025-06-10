@@ -11,20 +11,22 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>http://192.168.2.3/ipa/NAME/IPANAME.ipa</string>
+					<string>https://192.168.10.170/github/App/K2/K2.ipa</string>
 				</dict>
 			</array>
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>BUNDLEID</string>
+				<string>com.blrpj.hnhy.ios</string>
 				<key>bundle-version</key>
-				<string>VERSION</string>
+				<string>1.0</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>NAME</string>
-			</dict>
+				<string>K2测试</string>
+				<key>Github_URL</key>
+            	<string>https://192.168.10.170/plist/index_1.plist</string>
+			</dict> 
 		</dict>
 	</array>
 </dict>

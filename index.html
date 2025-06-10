@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>IPA 安装列表</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #222;
+    }
+    .plist-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 18px 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgb(0 0 0 / 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h2 {
+      margin: 0 0 12px 0;
+      font-size: 20px;
+      color: #007aff;
+      word-break: break-word;
+    }
+    .info {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+    button {
+      background: #007aff;
+      color: white;
+      border: none;
+      padding: 10px 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 10px;
+
+    }
+    button:hover {
+      background: #005ecb;
+    }
+    .loading {
+      text-align: center;
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+<!-- 
+  <div style="display: flex; height: 100px;"> -->
+    <div>
+    <h1>可安装 IPA 应用列表</h1>
+    <div style="flex: 1;"></div>
+    <div style="display: flex;justify-content: center; align-items: center;">
+      <button onclick="location.href='edit.html'">创建描述</button>
+    </div>
+    <div style="display: flex;justify-content: center; align-items: center;">
+    <button id="installCertBtn" style="background: #28a745;">安装证书(.crt)</button>
+</div>
+
+<script>
+  document.getElementById('installCertBtn').addEventListener('click', () => {
+    const crtUrl = new URL('./crt/ssl/server.crt', location.href).href;
+    window.location.href = crtUrl;  // 触发证书下载，iOS 设备会提示安装
+  });
+</script>
+ 
+  </div>
+
+
+  <div id="plistContainer" class="plist-list">
+    <div class="loading">加载中，请稍候…</div>
+    
+  </div>
+
+  <script>
+    async function fetchPlistDirectory() {
+      try {
+        const res = await fetch('plist/');  // 目录路径，根据你的实际路径改
+        const html = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        // 获取所有指向 plist 文件的链接
+        const links = Array.from(doc.querySelectorAll('a'))
+          .map(a => a.getAttribute('href'))
+          .filter(href => href && href.endsWith('.plist'));
+        // 去重并拼接完整 URL
+        return [...new Set(links)].map(name => new URL(`plist/${name}`, location.href).href);
+      } catch (err) {
+        console.error('读取 plist 目录失败:', err);
+        return [];
+      }
+    }
+
+    // 解析 plist xml，提取常用信息
+    async function parsePlist(url) {
+      try {
+        const txt = await fetch(url).then(r => r.text());
+        const xmlDoc = new DOMParser().parseFromString(txt, 'application/xml');
+        // 解析 plist -> dict -> array -> dict -> metadata
+        // plist结构中items->array->dict
+        const items = xmlDoc.querySelectorAll('plist > dict > array > dict');
+        if (items.length === 0) return null;
+
+        // metadata节点在dict里，遍历所有 dict 的子节点找 metadata key 后面的 dict
+        let metadataDict = null;
+        items.forEach(item => {
+          const keys = Array.from(item.querySelectorAll('key'));
+          keys.forEach((keyElem, idx) => {
+            if (keyElem.textContent === 'metadata') {
+              const nextElem = keyElem.nextElementSibling;
+              if (nextElem && nextElem.tagName === 'dict') {
+                metadataDict = nextElem;
+              }
+            }
+          });
+        });
+
+        if (!metadataDict) return null;
+
+        // metadataDict 中键值对转换为对象
+        const children = Array.from(metadataDict.children);
+        let meta = {};
+        for(let i = 0; i < children.length; i += 2) {
+          const key = children[i].textContent;
+          const val = children[i + 1]?.textContent || '';
+          meta[key] = val;
+        }
+
+        return {
+          title: meta['title'] || '未知应用',
+          bundleId: meta['bundle-identifier'] || '未知BundleID',
+          version: meta['bundle-version'] || '未知版本',
+          plist_plist: meta['Github_URL'] || '',
+        };
+
+      } catch (err) {
+        console.warn('解析 plist 失败', url, err);
+        return null;
+      }
+    }
+
+    // 渲染页面
+    async function render() {
+      const container = document.getElementById('plistContainer');
+      container.innerHTML = '';
+      const plistUrls = await fetchPlistDirectory();
+
+      if (plistUrls.length === 0) {
+        container.innerHTML = '<p class="loading">未找到任何 plist 文件。</p>';
+        return;
+      }
+
+      for (const url of plistUrls) {
+        const info = await parsePlist(url);
+        if (!info) continue;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+            <h2>${info.title}</h2>
+            <div class="info"><strong>Bundle ID：</strong>${info.bundleId}</div>
+            <div class="info"><strong>版本号：</strong>${info.version}</div>
+            <button ${info.plist_plist ? '' : 'disabled'}>安装此应用</button>
+        `;
+
+        const btn = card.querySelector('button');
+        if(info.plist_plist) {
+          btn.addEventListener('click', () => {
+            const installUrl = 'itms-services://?action=download-manifest&url='+ info.plist_plist;
+            window.location.href = installUrl;
+          });
+        } else {
+          btn.textContent = '无有效安装链接';
+        }
+
+        container.appendChild(card);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', render);
+  </script>
+</body>
+</html>

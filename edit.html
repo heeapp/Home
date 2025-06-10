@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>plist 配置生成器</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: #f0f2f5;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 6px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="javascript:history.go(-1)">返回</a>
+    <h2>生成 manifest.plist 配置</h2>
+    <form id="form">
+
+
+      <label>
+        App 名称:
+        <input type="text" name="appName" required placeholder="应用名称">
+      </label>
+
+      
+      <label>
+        IPA名称:
+        <!-- <input type="text" name="ipaName" required placeholder="http://192.168.10.170:/xxxx/xxx.ipa"> -->
+         <input type="text" name="ipaName" required placeholder="用于下载使用 本地ipa名称一致">
+      </label>
+ 
+
+      
+
+      <label>
+        Bundle ID:
+        <input type="text" name="bundleId" required placeholder="com.example.app">
+      </label>
+
+      <label>
+        版本号:
+        <input type="text" name="version" required placeholder="1.0.0" value="1.0.0">
+      </label>
+
+      <label>
+        图标地址 57x57（可选）:
+        <input type="text" name="icon57" placeholder="https://example.com/icon57.png">
+      </label>
+
+      <label>
+        图标地址 512x512（可选）:
+        <input type="text" name="icon512" placeholder="https://example.com/icon512.png">
+      </label>
+
+      <button type="submit">生成并下载 plist 文件</button>
+    </form>
+
+    <div class="footer">© 2025 plist工具</div>
+  </div>
+
+  <script>
+    async function loadTemplate() {
+      const response = await fetch('template.txt');
+      return await response.text();
+    }
+
+    document.getElementById('form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const template = await loadTemplate();
+      const form = e.target;
+
+      let result = template
+        .replace(/{{IPA_URL}}/g, form.ipaName.value)
+        .replace(/{{Github_URL}}/g, form.ipaName.value)
+        .replace(/{{APP_NAME}}/g, form.appName.value)
+        .replace(/{{BUNDLE_ID}}/g, form.bundleId.value)
+        .replace(/{{VERSION}}/g, form.version.value)
+        .replace(/{{ICON_57}}/g, form.icon57.value || '')
+        .replace(/{{ICON_512}}/g, form.icon512.value || '');
+
+      const blob = new Blob([result], { type: 'application/xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = form.ipaName.value + '.plist';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
