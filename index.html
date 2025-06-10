@@ -186,7 +186,10 @@
         const btn = card.querySelector('button');
         if(info.title) {
           btn.addEventListener('click', () => {
-            const installUrl = 'itms-services://?action=download-manifest&url=https://192.168.10.170/plist/'+ info.title + '.plist';
+
+
+            const installUrl = 'itms-services://?action=download-manifest&url=https://heeapp.github.io/Home/plist/'+ info.title + '.plist';
+            // const installUrl = 'itms-services://?action=download-manifest&url=https://192.168.10.170/plist/'+ info.title + '.plist';
             
             console.log(installUrl);
             
