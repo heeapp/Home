@@ -27,6 +27,10 @@
             
             <key>title</key>
             <string>{{APP_NAME}}</string>
+
+            <key>desc</key>
+            <string>{{DESC}}</string>
+
         </dict>
         </dict>
     </array>

@@ -150,6 +150,7 @@
           title: meta['title'] || '未知应用',
           bundleId: meta['bundle-identifier'] || '未知BundleID',
           version: meta['bundle-version'] || '未知版本',
+          desc: meta['app-desc'] || '未添加',
         };
 
       } catch (err) {
@@ -180,6 +181,7 @@
             <h2>${info.title}</h2>
             <div class="info"><strong>Bundle ID：</strong>${info.bundleId}</div>
             <div class="info"><strong>版本号：</strong>${info.version}</div>
+            <div class="info"><strong>描述：</strong>${info.desc}</div>
             <button ${info.title ? '' : 'disabled'}>安装此应用</button>
         `;
 

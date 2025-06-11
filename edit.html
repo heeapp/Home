@@ -94,10 +94,22 @@
         <input type="text" name="version" required placeholder="1.0.0" value="1.0.0">
       </label>
 
+
+       <label>
+        描述:
+        <input type="text" name="desc" placeholder="描述">
+      </label>
+
+
+
       <!-- <label>
         图标地址 57x57（可选）:
         <input type="text" name="icon57" placeholder="https://example.com/icon57.png">
       </label>
+
+     
+
+
 
       <label>
         图标地址 512x512（可选）:
@@ -123,12 +135,10 @@
 
       let result = template
         .replace(/{{IPA_URL}}/g, form.ipaName.value)
-        // .replace(/{{Github_URL}}/g, form.ipaName.value)
         .replace(/{{APP_NAME}}/g, form.appName.value)
         .replace(/{{BUNDLE_ID}}/g, form.bundleId.value)
+        .replace(/{{DESC}}/g, form.desc.value || '')
         .replace(/{{VERSION}}/g, form.version.value);
-        // .replace(/{{ICON_57}}/g, form.icon57.value || '')
-        // .replace(/{{ICON_512}}/g, form.icon512.value || '');
 
       const blob = new Blob([result], { type: 'application/xml' });
       const url = URL.createObjectURL(blob);
