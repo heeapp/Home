@@ -11,25 +11,25 @@
                 <key>kind</key>
                 <string>software-package</string>
                 <key>url</key>
-                <string>http://192.168.10.170/Install_IPA/ipa/{{IPA_URL}}.ipa</string>
+                <string>http://192.168.10.170/Install_IPA/ipa/K2-6.12.ipa</string>
             </dict> 
         </array>
         <key>metadata</key>
         <dict>
             <key>bundle-identifier</key>
-            <string>{{BUNDLE_ID}}</string>
+            <string>com.blrpj.hnhy.ios</string>
 
             <key>bundle-version</key>
-            <string>{{VERSION}}</string>
+            <string>6.12</string>
 
             <key>kind</key>
             <string>software</string>
             
             <key>title</key>
-            <string>{{APP_NAME}}</string>
+            <string>K2-6.12</string>
 
             <key>app-desc</key>
-            <string>{{DESC}}</string>
+            <string>K2-6.12,修改IDFV、IDFA、deviceId,NSDK没有设备信息</string>
 
         </dict>
         </dict>
