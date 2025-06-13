@@ -1,0 +1,137 @@
+port: 7899  # 代理端口连接
+socks-port: 7898 # 代理端口连接
+allow-lan: true
+mode: Rule
+log-level: info
+
+# 设置外部控制地址
+external-controller: 127.0.0.1:9090
+# dns:
+#   enabled: true
+#   nameserver:
+#     - 8.8.8.8
+#     - 114.114.114.114
+#   fallback:
+#     - 8.8.8.8
+#     - 8.8.4.4
+#     - tls://1.0.0.1:853
+#     - tls://dns.google:853
+
+# 代理服务器设置
+proxies:
+  - {name: begin3,type: socks5 ,server: bg3.begind.cn ,port: 2999}
+  - {name: begin4,type: socks5 ,server: bg4.begind.cn ,port: 2999}
+  - {name: HK, server: ss.chinahiyou.com, port: 8000, client-fingerprint: chrome, type: ssr, cipher: aes-256-cfb, password: play800.cn, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: "", obfs-param: "", udp: true}
+ 
+# 代理组设置
+proxy-groups:
+  - name: 代理组-负载均衡
+    type: load-balance
+    url: https://google.com
+    interval: 1000ms
+    strategy: consistent-hashing
+  # select: 手动切换代理。
+	# url-test: 自动选择最快的节点。
+	# fallback: 自动切换到可用的节点，确保连接稳定。
+	# load-balance: 负载均衡
+    proxies: 
+      - HK
+      - begin3
+      - begin4
+
+
+# 广告拦截
+# rule-providers:
+#   reject-ads:
+#     type: http
+#     behavior: domain
+#     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+#     path: ./ruleset/reject-ads.yaml
+#     interval: 86400
+
+ 
+  
+      
+# 规则设置  
+rules:
+  
+# 广告拦截专用
+  # - RULE-SET,reject-ads,REJECT
+ 
+  - IP-CIDR6, ::/0,DIRECT
+  
+    # GEOIP 中国 IP 直连
+  - GEOIP,CN,DIRECT
+
+  # 所有IPv6不进行代理，直连
+  - IP-CIDR,::/0,DIRECT
+  
+  # 私有 IP 地址范围直连
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  
+  # 环回地址直连
+  - IP-CIDR,127.0.0.0/8,DIRECT
+
+
+  # - DOMAIN-SUFFIX,admob.com,REJECT
+  # - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  # - DOMAIN-KEYWORD,ads,REJECT
+  # - DOMAIN-KEYWORD,pangle,REJECT
+  # - DOMAIN-KEYWORD,applovin,REJECT
+  # - DOMAIN-KEYWORD,applvn,REJECT
+
+  # - DOMAIN-SUFFIX,facebookads.com,REJECT
+  # - DOMAIN-SUFFIX,googlesyndication.com,REJECT
+  # - DOMAIN-SUFFIX,appsflyer.com,REJECT
+
+
+
+
+  # - DOMAIN-KEYWORD,jetbrains.com,DIRECT
+
+
+
+ 
+
+
+
+  # 其他流量走代理
+  - MATCH,代理组-负载均衡
+   # 其他所有流量通过“代理组”  选择中的一个
+  
+# ---------------------规则配置----------------------
+  # - DOMAIN-SUFFIX,example.com,DIRECT
+  # - DOMAIN,api.example.com,DIRECT
+  # - DOMAIN-KEYWORD,example,DIRECT
+  # - FINAL,PROXY
+
+  # DOMAIN-SUFFIX    example.com      匹配所有以 example.com 结尾的域名
+  # DOMAIN           api.example.com  精确匹配某个域名
+  # DOMAIN-KEYWORD   example          匹配包含 example 的域名
+  # FINAL                             默认规则，放在最后（没有匹配时使用）
+
+  # • DIRECT：表示直连，不走代理。
+  # • PROXY：表示走你设置的默认代理组。
+  # • REJECT：拦截请求。
+  # • MATCH 或 FINAL：所有规则都没匹配时用。
+# -------------------------------------------
+ 
+
+
+# 脚本设置
+# script:
+#   code: |
+#       function main() {
+#         return {
+#           rules: [
+#             { domainSuffix: 'google.com', outbound: 'Proxy1' },
+#             { domainSuffix: 'facebook.com', outbound: 'Proxy1' },
+#             { domainSuffix: 'example.com', outbound: 'DIRECT' },
+#             { geoip: 'CN', outbound: 'DIRECT' },
+#             { match: 'Proxy1' }
+#           ]
+#         }
+#       }
+
