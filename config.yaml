@@ -28,7 +28,7 @@ proxy-groups:
   - name: 代理组-负载均衡
     type: load-balance
     url: https://google.com
-    interval: 1000ms
+    interval: 1000
     strategy: consistent-hashing
   # select: 手动切换代理。
 	# url-test: 自动选择最快的节点。
