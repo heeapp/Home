@@ -28,6 +28,9 @@
             <key>title</key>
             <string>K2</string>
 
+            <key>plistName</key>
+            <string>K2</string>
+
             <key>app-desc</key>
             <string>旧版本，未添加设备信息</string>
         </dict>

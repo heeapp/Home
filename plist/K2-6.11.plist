@@ -28,6 +28,9 @@
             <key>title</key>
             <string>K2-6.11</string>
 
+            <key>plistName</key>
+            <string>K2-6.11</string>
+
             <key>app-desc</key>
             <string>图标菜单栏，登录增加设备信息</string>
 

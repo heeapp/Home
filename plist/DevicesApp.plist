@@ -27,6 +27,9 @@
             
             <key>title</key>
             <string>DevicesApp</string>
+
+            <key>plistName</key>
+            <string>DevicesApp</string>
         </dict>
         </dict>
     </array>

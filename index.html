@@ -77,12 +77,12 @@
     <button id="installCertBtn" style="background: #28a745;">安装证书(.crt)</button> -->
 </div>
 
-<script>
+<!-- <script>
   document.getElementById('installCertBtn').addEventListener('click', () => {
     const crtUrl = new URL('./crt/ssl/server.crt', location.href).href;
     window.location.href = crtUrl;  // 触发证书下载，iOS 设备会提示安装
   });
-</script>
+</script> -->
  
   </div>
 
@@ -148,6 +148,7 @@
 
         return {
           title: meta['title'] || '未知应用',
+          plistName: meta['plistName'] || '未知应用',
           bundleId: meta['bundle-identifier'] || '未知BundleID',
           version: meta['bundle-version'] || '未知版本',
           desc: meta['app-desc'] || '未添加',
@@ -190,7 +191,7 @@
           btn.addEventListener('click', () => {
 
 
-            const installUrl = 'itms-services://?action=download-manifest&url=https://heeapp.github.io/Home/plist/'+ info.title + '.plist';
+            const installUrl = 'itms-services://?action=download-manifest&url=https://heeapp.github.io/Home/plist/'+ info.plistName + '.plist';
             // const installUrl = 'itms-services://?action=download-manifest&url=https://192.168.10.170/plist/'+ info.title + '.plist';
             
             console.log(installUrl);

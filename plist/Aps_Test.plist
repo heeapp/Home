@@ -31,6 +31,10 @@
             <key>app-desc</key>
             <string>本地测试  推送使用  获取deviceToken</string>
 
+
+            <key>plistName</key>
+            <string>Aps_Test</string>
+
         </dict>
         </dict>
     </array>

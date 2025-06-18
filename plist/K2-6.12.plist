@@ -28,6 +28,9 @@
             <key>title</key>
             <string>K2-6.12</string>
 
+            <key>plistName</key>
+           <string>K2-6.12</string>
+           
             <key>app-desc</key>
             <string>K2-6.12,修改IDFV、IDFA、deviceId,NSDK没有设备信息</string>
 
