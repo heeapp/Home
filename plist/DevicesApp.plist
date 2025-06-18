@@ -28,7 +28,7 @@
             <key>title</key>
             <string>DevicesApp</string>
 
-            <key>plistName</key>
+            <key>ipa-name</key>
             <string>DevicesApp</string>
         </dict>
         </dict>

@@ -31,7 +31,7 @@
             <key>app-desc</key>
             <string>{{DESC}}</string>
 
-            <key>plistName</key>
+            <key>ipa-name</key>
             <string>{{IPA_URL}}</string>
 
 
