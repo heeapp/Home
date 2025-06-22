@@ -19,88 +19,89 @@ external-controller: 127.0.0.1:9090
 
 # 代理服务器设置
 proxies:
-  - {name: begin3,type: socks5 ,server: bg3.begind.cn ,port: 2999}
-  - {name: begin4,type: socks5 ,server: bg4.begind.cn ,port: 2999}
-  - {name: HK, server: ss.chinahiyou.com, port: 8000, client-fingerprint: chrome, type: ssr, cipher: aes-256-cfb, password: play800.cn, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: "", obfs-param: "", udp: true}
+  - { name: begin3,type: socks5 ,server: bg3.begind.cn ,port: 2999}
+  - { name: begin4,type: socks5 ,server: bg4.begind.cn ,port: 2999}
+  - { name: HK, 
+      server: ss.chinahiyou.com,
+      port: 8000, 
+      client-fingerprint: chrome,
+      type: ssr, 
+      cipher: aes-256-cfb, 
+      password: play800.cn, 
+      protocol: auth_aes128_sha1, 
+      obfs: tls1.2_ticket_auth, 
+      protocol-param: "", 
+      obfs-param: "", 
+      udp: true
+      }
  
+
+ # type:
+        # select: 手动切换代理。
+        # url-test: 自动选择最快的节点。
+        # fallback: 自动切换到可用的节点，确保连接稳定。
+        # load-balance: 负载均衡
+      # strategy：  2种类型  普通 fallback、select 配置了也会被忽略 他们并不支持
+        # round-robin  只支持：load-balance 
+          # 高并发并发连接、爬虫 下载等 稳定的节点
+        # consistent-hashing  只支持：url-test  load-balance    
+          # 为每个URL 配置最合适的节点连接 
+          # 如果你访问 chatgpt.com，就一直用某个测速最快的节点；
+          # 如果你访问 youtube.com，可能选了另一个节点；
+
 # 代理组设置
 proxy-groups:
-  - name: 代理组-负载均衡
-    type: load-balance
-    url: https://google.com
-    interval: 1000
-    strategy: consistent-hashing
-  # select: 手动切换代理。
-	# url-test: 自动选择最快的节点。
-	# fallback: 自动切换到可用的节点，确保连接稳定。
-	# load-balance: 负载均衡
+  - name: 手动选择节点
+    type: select 
+    interval: 3000
+    url: https://chatgpt.com
+    proxies: 
+      - 自动测速
+      - 负载均衡
+      - HK
+      - begin3
+      - begin4
+
+  - name: 自动测速
+    type: url-test 
+    interval: 3000
+    url: https://chatgpt.com
+    strategy: consistent-hashing   
     proxies: 
       - HK
       - begin3
       - begin4
 
-
-# 广告拦截
-# rule-providers:
-#   reject-ads:
-#     type: http
-#     behavior: domain
-#     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-#     path: ./ruleset/reject-ads.yaml
-#     interval: 86400
+  - name: 负载均衡
+    type: load-balance 
+    interval: 3000
+    url: https://chatgpt.com
+    strategy: consistent-hashing  
+    proxies:
+      - HK
+      - begin3
+      - begin4
 
  
-  
-      
 # 规则设置  
-rules:
-  
-# 广告拦截专用
-  # - RULE-SET,reject-ads,REJECT
- 
-  - IP-CIDR6, ::/0,DIRECT
-  
+rules: 
+  - IP-CIDR6, ::/0,DIRECT 
     # GEOIP 中国 IP 直连
-  - GEOIP,CN,DIRECT
-
+  - GEOIP,CN,DIRECT 
   # 所有IPv6不进行代理，直连
-  - IP-CIDR,::/0,DIRECT
-  
+  - IP-CIDR,::/0,DIRECT 
+
   # 私有 IP 地址范围直连
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  
+  - IP-CIDR,192.168.0.0/16,DIRECT 
   # 环回地址直连
-  - IP-CIDR,127.0.0.0/8,DIRECT
-
-
-  # - DOMAIN-SUFFIX,admob.com,REJECT
-  # - DOMAIN-SUFFIX,doubleclick.net,REJECT
-  # - DOMAIN-KEYWORD,ads,REJECT
-  # - DOMAIN-KEYWORD,pangle,REJECT
-  # - DOMAIN-KEYWORD,applovin,REJECT
-  # - DOMAIN-KEYWORD,applvn,REJECT
-
-  # - DOMAIN-SUFFIX,facebookads.com,REJECT
-  # - DOMAIN-SUFFIX,googlesyndication.com,REJECT
-  # - DOMAIN-SUFFIX,appsflyer.com,REJECT
-
-
-
-
-  # - DOMAIN-KEYWORD,jetbrains.com,DIRECT
-
-
-
- 
-
-
-
+  - IP-CIDR,127.0.0.0/8,DIRECT 
   # 其他流量走代理
-  - MATCH,代理组-负载均衡
-   # 其他所有流量通过“代理组”  选择中的一个
-  
+  - MATCH,手动选择节点
+
+
+   # 其他所有流量通过“代理组”  选择中的一个 
 # ---------------------规则配置----------------------
   # - DOMAIN-SUFFIX,example.com,DIRECT
   # - DOMAIN,api.example.com,DIRECT
@@ -118,8 +119,6 @@ rules:
   # • MATCH 或 FINAL：所有规则都没匹配时用。
 # -------------------------------------------
  
-
-
 # 脚本设置
 # script:
 #   code: |
