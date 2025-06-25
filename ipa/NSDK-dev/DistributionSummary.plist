@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>client-mobile.ipa</key>
+	<key>K2.ipa</key>
 	<array>
 		<dict>
 			<key>architectures</key>
@@ -10,7 +10,7 @@
 				<string>arm64</string>
 			</array>
 			<key>buildNumber</key>
-			<string>9999</string>
+			<string>20222</string>
 			<key>certificate</key>
 			<dict>
 				<key>SHA1</key>
@@ -145,7 +145,7 @@
 				<true/>
 			</dict>
 			<key>name</key>
-			<string>client-mobile.app</string>
+			<string>K2.app</string>
 			<key>profile</key>
 			<dict>
 				<key>UUID</key>
@@ -163,7 +163,7 @@
 				<string>yurong zhang</string>
 			</dict>
 			<key>versionNumber</key>
-			<string>9.9.9</string>
+			<string>1.0.1222</string>
 		</dict>
 	</array>
 </dict>

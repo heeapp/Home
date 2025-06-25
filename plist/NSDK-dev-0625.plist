@@ -11,7 +11,7 @@
                 <key>kind</key>
                 <string>software-package</string>
                 <key>url</key>
-                <string>http://192.168.10.170/Install_IPA/ipa/K2-pay.ipa</string>
+                <string>http://192.168.10.170/Install_IPA/ipa/NSDK-dev-0625.ipa</string>
             </dict> 
         </array>
         <key>metadata</key>
@@ -26,13 +26,13 @@
             <string>software</string>
             
             <key>title</key>
-            <string>K2-pay</string>
+            <string>NSDK-测试</string>
 
             <key>app-desc</key>
-            <string>测试支付，没有NSDK订单 </string>
+            <string>20250625 更新：1、NSDK增加设备信息。2、活动中心。3、UFO-DeviceID使用缓存idfa拼接。4、本地测试地址</string>
 
             <key>ipa-name</key>
-            <string>K2-pay</string>
+            <string>NSDK-dev-0625</string>
 
 
         </dict>

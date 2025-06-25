@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>K2.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>20222</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>B20BD81E091522FA0CD38530D88B660E9683F208</string>
+				<key>dateExpires</key>
+				<string>2026/5/28</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>B20BD81E091522FA0CD38530D88B660E9683F208</string>
+						<key>dateExpires</key>
+						<string>2026/5/28</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>NIMSDK.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>AGYGHZD3AP</string>
+						<key>name</key>
+						<string>yurong zhang</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>9.2.8</string>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>167</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>B20BD81E091522FA0CD38530D88B660E9683F208</string>
+						<key>dateExpires</key>
+						<string>2026/5/28</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>QYSDK.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>AGYGHZD3AP</string>
+						<key>name</key>
+						<string>yurong zhang</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>10.5.0</string>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>B20BD81E091522FA0CD38530D88B660E9683F208</string>
+						<key>dateExpires</key>
+						<string>2026/5/28</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>UnionOpenPlatformCore.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>AGYGHZD3AP</string>
+						<key>name</key>
+						<string>yurong zhang</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>1.0.0</string>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>B20BD81E091522FA0CD38530D88B660E9683F208</string>
+						<key>dateExpires</key>
+						<string>2026/5/28</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>UnionOpenPlatformDataLink.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>AGYGHZD3AP</string>
+						<key>name</key>
+						<string>yurong zhang</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>1.0.0</string>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>AGYGHZD3AP.com.blrpj.hnhy.ios</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>AGYGHZD3AP</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>K2.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>c94d2afb-81d4-4638-be1b-6fe5a926e4c8</string>
+				<key>dateExpires</key>
+				<string>2026/6/17</string>
+				<key>name</key>
+				<string>Generate Provisioning</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>AGYGHZD3AP</string>
+				<key>name</key>
+				<string>yurong zhang</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0.1222</string>
+		</dict>
+	</array>
+</dict>
+</plist>

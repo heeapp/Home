@@ -11,7 +11,7 @@
                 <key>kind</key>
                 <string>software-package</string>
                 <key>url</key>
-                <string>http://192.168.10.170/Install_IPA/ipa/K2.ipa</string>
+                <string>http://192.168.10.170/Install_IPA/ipa/NSDK0625.ipa</string>
             </dict> 
         </array>
         <key>metadata</key>
@@ -20,19 +20,21 @@
             <string>com.blrpj.hnhy.ios</string>
 
             <key>bundle-version</key>
-            <string>6.11</string>
+            <string>1.0.0</string>
 
             <key>kind</key>
             <string>software</string>
             
             <key>title</key>
-            <string>K2</string>
-
-            <key>ipa-name</key>
-            <string>K2</string>
+            <string>NSDK-线上</string>
 
             <key>app-desc</key>
-            <string>旧版本，未添加设备信息</string>
+            <string>20250625 更新：1、NSDK增加设备信息。2、活动中心。3、UFO-DeviceID使用缓存idfa拼接。4、线上地址</string>
+
+            <key>ipa-name</key>
+            <string>NSDK0625</string>
+
+
         </dict>
         </dict>
     </array>
