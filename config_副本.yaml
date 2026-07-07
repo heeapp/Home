@@ -1,0 +1,136 @@
+port: 7899  # 代理端口连接
+socks-port: 7898 # 代理端口连接
+allow-lan: true
+mode: Rule
+log-level: info
+
+# 设置外部控制地址
+external-controller: 127.0.0.1:9090
+# dns:
+#   enabled: true
+#   nameserver:
+#     - 8.8.8.8
+#     - 114.114.114.114
+#   fallback:
+#     - 8.8.8.8
+#     - 8.8.4.4
+#     - tls://1.0.0.1:853
+#     - tls://dns.google:853
+
+# 代理服务器设置
+proxies:
+  - { name: begin3,type: socks5 ,server: bg3.begind.cn ,port: 2999}
+  - { name: begin4,type: socks5 ,server: bg4.begind.cn ,port: 2999}
+  - { name: HK, 
+      server: ss.chinahiyou.com,
+      port: 8000, 
+      client-fingerprint: chrome,
+      type: ssr, 
+      cipher: aes-256-cfb, 
+      password: play800.cn, 
+      protocol: auth_aes128_sha1, 
+      obfs: tls1.2_ticket_auth, 
+      protocol-param: "", 
+      obfs-param: "", 
+      udp: true
+      }
+ 
+
+ # type:
+        # select: 手动切换代理。
+        # url-test: 自动选择最快的节点。
+        # fallback: 自动切换到可用的节点，确保连接稳定。
+        # load-balance: 负载均衡
+      # strategy：  2种类型  普通 fallback、select 配置了也会被忽略 他们并不支持
+        # round-robin  只支持：load-balance 
+          # 高并发并发连接、爬虫 下载等 稳定的节点
+        # consistent-hashing  只支持：url-test  load-balance    
+          # 为每个URL 配置最合适的节点连接 
+          # 如果你访问 chatgpt.com，就一直用某个测速最快的节点；
+          # 如果你访问 youtube.com，可能选了另一个节点；
+
+# 代理组设置
+proxy-groups:
+  - name: 手动选择节点
+    type: select 
+    interval: 3000
+    url: https://chatgpt.com
+    proxies: 
+      - 自动测速
+      - 负载均衡
+      - HK
+      - begin3
+      - begin4
+
+  - name: 自动测速
+    type: url-test 
+    interval: 3000
+    url: https://chatgpt.com
+    strategy: consistent-hashing   
+    proxies: 
+      - HK
+      - begin3
+      - begin4
+
+  - name: 负载均衡
+    type: load-balance 
+    interval: 3000
+    url: https://chatgpt.com
+    strategy: consistent-hashing  
+    proxies:
+      - HK
+      - begin3
+      - begin4
+
+ 
+# 规则设置  
+rules: 
+  - IP-CIDR6, ::/0,DIRECT 
+    # GEOIP 中国 IP 直连
+  - GEOIP,CN,DIRECT 
+  # 所有IPv6不进行代理，直连
+  - IP-CIDR,::/0,DIRECT 
+
+  # 私有 IP 地址范围直连
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT 
+  # 环回地址直连
+  - IP-CIDR,127.0.0.0/8,DIRECT 
+  # 其他流量走代理
+  - MATCH,手动选择节点
+
+
+   # 其他所有流量通过“代理组”  选择中的一个 
+# ---------------------规则配置----------------------
+  # - DOMAIN-SUFFIX,example.com,DIRECT
+  # - DOMAIN,api.example.com,DIRECT
+  # - DOMAIN-KEYWORD,example,DIRECT
+  # - FINAL,PROXY
+
+  # DOMAIN-SUFFIX    example.com      匹配所有以 example.com 结尾的域名
+  # DOMAIN           api.example.com  精确匹配某个域名
+  # DOMAIN-KEYWORD   example          匹配包含 example 的域名
+  # FINAL                             默认规则，放在最后（没有匹配时使用）
+
+  # • DIRECT：表示直连，不走代理。
+  # • PROXY：表示走你设置的默认代理组。
+  # • REJECT：拦截请求。
+  # • MATCH 或 FINAL：所有规则都没匹配时用。
+# -------------------------------------------
+ 
+# 脚本设置
+# script:
+#   code: |
+#       function main() {
+#         return {
+#           rules: [
+#             { domainSuffix: 'google.com', outbound: 'Proxy1' },
+#             { domainSuffix: 'facebook.com', outbound: 'Proxy1' },
+#             { domainSuffix: 'example.com', outbound: 'DIRECT' },
+#             { geoip: 'CN', outbound: 'DIRECT' },
+#             { match: 'Proxy1' }
+#           ]
+#         }
+#       }
+
