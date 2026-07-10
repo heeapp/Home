@@ -1,0 +1,84 @@
+
+{
+    "name": "轻松签源",
+    "identifier": "xyz.yyyue.192.168.10.170",
+    "sourceURL": "http://192.168.10.170/Install_IPA/apps.json",
+    "payURL": "解锁购买Cer",
+    "apps": [
+        {
+            "name": "Dazz_2.6.9_解锁会员",
+            "bundleIdentifier": "p3.xyz.yyyue.esign",
+            "developerName": "yyy",
+            "version": "5.0.2",
+            "versionDate": "2024-01-28T21:40:00+08:00",
+            "versionDescription": "轻松签服务器即将过期，后续不再续费，建议更换签名软件。",
+            "downloadURL": "http://192.168.10.170/Install_IPA/ipa/Dazz_2.6.9_解锁会员.ipa",
+            "localizedDescription": "轻松签是一款免越狱可给ipa签名的工具，具有注入库，去库等功能。",
+            "iconURL": "http://192.168.10.170/Install_IPA/ipa/icon/Dazz_2.6.9_解锁会员.png",
+            "tintColor": "018084",
+            "isLanZouCloud": 0,
+            "size": 7206362,
+            "type": 1
+        },
+        {
+            "name": "ESign_5.0.2_rural1",
+            "bundleIdentifier": "p3.xyz.yyyue.esign",
+            "developerName": "yyy",
+            "version": "5.0.2",
+            "versionDate": "2024-01-28T21:40:00+08:00",
+            "versionDescription": "轻松签服务器即将过期，后续不再续费，建议更换签名软件。",
+            "downloadURL": "http://192.168.10.170/Install_IPA/ipa/ESign_5.0.2_rural1.ipa",
+            "localizedDescription": "轻松签是一款免越狱可给ipa签名的工具，具有注入库，去库等功能。",
+            "iconURL": "http://192.168.10.170/Install_IPA/ipa/icon/ESign_5.0.2_rural1.png",
+            "tintColor": "018084",
+            "isLanZouCloud": 0,
+            "size": 7206362,
+            "type": 1
+        },
+        {
+            "name": "Terraria_4.4.14",
+            "bundleIdentifier": "p3.xyz.yyyue.esign",
+            "developerName": "yyy",
+            "version": "5.0.2",
+            "versionDate": "2024-01-28T21:40:00+08:00",
+            "versionDescription": "轻松签服务器即将过期，后续不再续费，建议更换签名软件。",
+            "downloadURL": "http://192.168.10.170/Install_IPA/ipa/Terraria_4.4.14.ipa",
+            "localizedDescription": "轻松签是一款免越狱可给ipa签名的工具，具有注入库，去库等功能。",
+            "iconURL": "http://192.168.10.170/Install_IPA/ipa/icon/Terraria_4.4.14.png",
+            "tintColor": "018084",
+            "isLanZouCloud": 0,
+            "size": 7206362,
+            "type": 1
+        },
+        {
+            "name": "VSCO_410.0.0",
+            "bundleIdentifier": "p3.xyz.yyyue.esign",
+            "developerName": "yyy",
+            "version": "5.0.2",
+            "versionDate": "2024-01-28T21:40:00+08:00",
+            "versionDescription": "轻松签服务器即将过期，后续不再续费，建议更换签名软件。",
+            "downloadURL": "http://192.168.10.170/Install_IPA/ipa/VSCO_410.0.0.ipa",
+            "localizedDescription": "轻松签是一款免越狱可给ipa签名的工具，具有注入库，去库等功能。",
+            "iconURL": "http://192.168.10.170/Install_IPA/ipa/icon/VSCO_410.0.0.png",
+            "tintColor": "018084",
+            "isLanZouCloud": 0,
+            "size": 7206362,
+            "type": 1
+        },
+        {
+            "name": "微信_8.0.66_1773285998",
+            "bundleIdentifier": "p3.xyz.yyyue.esign",
+            "developerName": "yyy",
+            "version": "5.0.2",
+            "versionDate": "2024-01-28T21:40:00+08:00",
+            "versionDescription": "轻松签服务器即将过期，后续不再续费，建议更换签名软件。",
+            "downloadURL": "http://192.168.10.170/Install_IPA/ipa/微信_8.0.66_1773285998.ipa",
+            "localizedDescription": "轻松签是一款免越狱可给ipa签名的工具，具有注入库，去库等功能。",
+            "iconURL": "http://192.168.10.170/Install_IPA/ipa/icon/微信_8.0.66_1773285998.png",
+            "tintColor": "018084",
+            "isLanZouCloud": 0,
+            "size": 7206362,
+            "type": 1
+        }
+    ]
+}
